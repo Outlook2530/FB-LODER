@@ -1599,9 +1599,10 @@ def cleanup_old_sessions():
                 
                 for user_id in expired_sessions:
                     del user_sessions[user_id]
-        except:
-        finally:
-            time.sleep(3600)
+        except Exception as e:
+            # Log error silently
+            pass
+        time.sleep(3600)
 
 if __name__ == '__main__':
     keep_alive_thread = Thread(target=background_keep_alive, daemon=True)
